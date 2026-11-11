@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chuẩn Hóa Văn Bản NĐ 30/2020/NĐ-CP</title>
+    <meta name="description" content="Ứng dụng tự động chuẩn hóa văn bản Word, ảnh scan, PDF theo đúng thể thức, căn lề, phông chữ và bố cục Nghị định số 30/2020/NĐ-CP của Chính phủ." />
+    <meta property="og:title" content="Chuẩn Hóa Văn Bản NĐ 30/2020/NĐ-CP" />
+    <meta property="og:description" content="Ứng dụng tự động chuẩn hóa văn bản Word, ảnh scan, PDF theo đúng thể thức, căn lề, phông chữ và bố cục Nghị định số 30/2020/NĐ-CP của Chính phủ." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      // 1. Mock window.WebSocket to prevent Vite dev client WebSocket connection failures in sandbox
+      (function() {
+        const _RealWebSocket = window.WebSocket;
+        if (_RealWebSocket) {
+          window.WebSocket = function(url, protocols) {
+            if (typeof url === 'string' && (
+              url.includes('vite') ||
+              url.includes('run.app') ||
+              url.includes('localhost') ||
+              url.includes(':3000') ||
+              url.includes('ws://') ||
+              url.includes('wss://')
+            )) {
+              const target = new EventTarget();
+              const mock = {
+                CONNECTING: 0,
+                OPEN: 1,
+                CLOSING: 2,
+                CLOSED: 3,
+                readyState: 1, // OPEN
+                url: url,
+                bufferedAmount: 0,
+                extensions: '',
+                protocol: '',
+                binaryType: 'blob',
+                onopen: null,
+                onclose: null,
+                onerror: null,
+                onmessage: null,
+                send: function() {},
+                close: function() {},
+                addEventListener: function(type, listener, options) {
+                  target.addEventListener(type, listener, options);
+                },
+                removeEventListener: function(type, listener, options) {
+                  target.removeEventListener(type, listener, options);
+                },
+                dispatchEvent: function(event) {
+                  return target.dispatchEvent(event);
+                }
+              };
+              setTimeout(function() {
+                mock.readyState = 1;
+                const evt = new Event('open');
+                if (typeof mock.onopen === 'function') mock.onopen(evt);
+                target.dispatchEvent(evt);
+              }, 0);
+              return mock;
+            }
+            return new _RealWebSocket(url, protocols);
+          };
+          window.WebSocket.prototype = _RealWebSocket.prototype;
+          window.WebSocket.CONNECTING = 0;
+          window.WebSocket.OPEN = 1;
+          window.WebSocket.CLOSING = 2;
+          window.WebSocket.CLOSED = 3;
+        }
+
+        // 2. Filter console.error and console.warn for Vite WebSocket warnings
+        const _origConsoleError = console.error;
+        console.error = function(...args) {
+          const msg = args.map(a => String(a || '')).join(' ');
+          if (msg.includes('WebSocket') || msg.includes('[vite] failed to connect to websocket')) {
+            return;
+          }
+          _origConsoleError.apply(console, args);
+        };
+
+        const _origConsoleWarn = console.warn;
+        console.warn = function(...args) {
+          const msg = args.map(a => String(a || '')).join(' ');
+          if (msg.includes('WebSocket') || msg.includes('[vite]')) {
+            return;
+          }
+          _origConsoleWarn.apply(console, args);
+        };
+
+        // 3. Capture and suppress unhandledrejection and window error in capture phase
+        window.addEventListener('unhandledrejection', function(event) {
+          const reasonStr = String(event.reason || '') + (event.reason?.message || '') + (event.reason?.stack || '');
+          if (reasonStr.includes('WebSocket') || reasonStr.includes('@vite/client')) {
+            event.stopImmediatePropagation();
+            event.preventDefault();
+          }
+        }, true);
+
+        window.addEventListener('error', function(event) {
+          const errStr = String(event.message || '') + (event.filename || '');
+          if (errStr.includes('WebSocket') || errStr.includes('@vite/client')) {
+            event.stopImmediatePropagation();
+            event.preventDefault();
+          }
+        }, true);
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

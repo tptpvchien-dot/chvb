@@ -1,0 +1,6 @@
+{
+  "name": "Chuẩn Hóa Văn Bản NĐ 30/2020/NĐ-CP",
+  "description": "Ứng dụng tự động chuẩn hóa văn bản Word, ảnh scan, PDF theo đúng thể thức, căn lề, phông chữ và bố cục Nghị định số 30/2020/NĐ-CP của Chính phủ.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
